@@ -1,0 +1,8 @@
+# Ignore files produced in the build process
+*.pdf
+*.sty
+*.aux
+*.glo
+*.idx
+*.tmp
+*.log
