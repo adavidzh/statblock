@@ -1,0 +1,664 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2017 by Cristovao Beiraod da Cruz e Silva <CrisXed@gmail.com>
+% -------------------------------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{statblock.dtx}
+%</driver>
+%<*package>
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{statblock}[2017/09/12 v1.0 statblock package]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{statblock}[2017/09/12]
+\usepackage{color}
+\usepackage{listings}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{statblock.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+%
+%\makeatletter
+%\lst@RequireAspects{writefile}
+%\newsavebox{\LaTeXdemo@box}
+%\lstnewenvironment{LaTeXdemo}[1][code and example]{^^A
+%  \global\let\lst@intname\@empty
+%  \expandafter\let\expandafter\LaTeXdemo@end
+%    \csname LaTeXdemo@#1@end\endcsname
+%  \@nameuse{LaTeXdemo@#1}^^A
+%}{^^A
+%  \LaTeXdemo@end
+%}
+%\newcommand*\LaTeXdemo@new[3]{^^A
+%  \expandafter\newcommand\expandafter*\expandafter
+%    {\csname LaTeXdemo@#1\endcsname}{#2}^^A
+%  \expandafter\newcommand\expandafter*\expandafter
+%    {\csname LaTeXdemo@#1@end\endcsname}{#3}^^A
+%}
+%\newcommand*\LaTeXdemo@common{^^A
+%  \setkeys{lst}{
+%    basicstyle   = \small\ttfamily,
+%    basewidth    = 0.51em,
+%    gobble       = 3,
+%    keywordstyle = \color{blue},
+%    language     = [LaTeX]{TeX},
+%    moretexcs    = {
+%      examplemacro,
+%      ^^A Add you command names here!
+%    }
+%  }^^A
+%}
+%\newcommand*\LaTeXdemo@input{^^A
+%  \MakePercentComment
+%  \catcode`\^^M=10\relax
+%  \small
+%  \begingroup
+%    \setkeys{lst}{
+%      SelectCharTable=\lst@ReplaceInput{\^\^I}{\lst@ProcessTabulator}
+%    }^^A
+%    \leavevmode
+%      \input{\jobname.tmp}^^A
+%  \endgroup
+%  \MakePercentIgnore
+%}
+%\LaTeXdemo@new{code and example}{^^A
+%  \setbox\LaTeXdemo@box=\hbox\bgroup
+%    \lst@BeginAlsoWriteFile{\jobname.tmp}^^A
+%    \LaTeXdemo@common
+%}{^^A
+%    \lst@EndWriteFile
+%  \egroup
+%  \begin{center}
+%    \ifdim\wd\LaTeXdemo@box>0.48\linewidth\relax
+%      \hbox to\linewidth{\box\LaTeXdemo@box\hss}^^A
+%        \begin{minipage}{\linewidth}
+%          \LaTeXdemo@input
+%        \end{minipage}
+%    \else
+%      \begin{minipage}{0.48\linewidth}
+%        \LaTeXdemo@input
+%      \end{minipage}
+%      \hfill
+%      \begin{minipage}{0.48\linewidth}
+%        \hbox to\linewidth{\box\LaTeXdemo@box\hss}^^A
+%      \end{minipage}
+%    \fi
+%  \end{center}
+%}
+%\LaTeXdemo@new{code only}{^^A
+%  \LaTeXdemo@common
+%}{^^A
+%}
+%\makeatother
+%
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2017/09/12}{Initial version}
+%
+% \GetFileInfo{statblock.sty}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% \DoNotIndex{\\,\{,\}}
+% \DoNotIndex{\addfontfeatures,\advance,\baselineskip,\begin,\color,\colorbox}
+% \DoNotIndex{\def,\end,\enskip,\fboxsep,\fi,\hbox,\hfill,\hspace,\ifdefempty}
+% \DoNotIndex{\ifluatex,\ifxetex,\includegraphics,\item,\itemindent}
+% \DoNotIndex{\leftmargin,\linewidth,\listparindent,\makebox,\MakeUppercase}
+% \DoNotIndex{\mystrut,\newfontfamily,\newlength,\par,\parsep,\parskip}
+% \DoNotIndex{\partopsep,\quad,\renewcommand,\RequirePackage,\rule,\setlength}
+% \DoNotIndex{\textbf,\topsep,\vcenter,\vrule,\vspace}
+%
+%
+% \title{The \textsf{statblock} package\thanks{This document
+%   corresponds to \textsf{statblock}~\fileversion, dated \filedate.}}
+% \author{Cristovao Beirao da Cruz e Silva \\ \texttt{CrisXed@gmail.com}}
+%
+% \maketitle
+%
+% \section{Introduction}
+%
+% Put text here.
+%
+% \section{Usage}
+%
+% \begin{flushleft}
+% \DescribeEnv{statblock}
+% This environment creates a basic and vanilla statblock.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      %\statblockText{This is a test}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderColour}
+% Set the background colour of the title.\\
+% \DescribeMacro{\statblockHeaderTextColour}
+% Set the colour of the title text. Ignored if fontspec is loaded, i.e. if using xelatex or lualatex.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%    \end{statblock}\par
+%    \begin{statblock}
+%      \statblockHeaderColour{blue}
+%      \statblockHeaderTextColour{yellow}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderHeight}
+% Set the height of the title, default $0.8$.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%    \end{statblock}\par
+%    \begin{statblock}
+%      \statblockHeaderHeight{1.0}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderDepth}
+% Set the depth of the title, default $0.4$.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%    \end{statblock}\par
+%    \begin{statblock}
+%      \statblockHeaderDepth{0.6}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockTitle}
+% Set the title of the statblock.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%      \statblockTitle{This is the title}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockRightTitle}
+% Set the right-hand title of the statblock.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      \statblockRightTitle{CR 1/2}
+%    \end{statblock}
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderFont}
+% Set the font for the header of the statblock. Only works if fontspec is loaded, i.e. if using xelatex or lualatex.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \makeatletter
+%    \ifdefempty{\statblock@useFontspec}{
+%    This example does not work in basic latex, please compile with lualatex or xelatex
+%    }{
+%    %This font example is compiled on macOS
+%    \newfontfamily\chancery[Ligatures=TeX]{Apple Chancery}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      \statblockRightTitle{CR 1/2}
+%      \statblockHeaderFont{\chancery\addfontfeatures{Color=FEFEFE}}
+%    \end{statblock}
+%    }
+%    \makeatother
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderLeftFont}
+% Set the font for the header of the statblock. Only works if fontspec is loaded, i.e. if using xelatex or lualatex.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \makeatletter
+%    \ifdefempty{\statblock@useFontspec}{
+%    This example does not work in basic latex, please compile with lualatex or xelatex
+%    }{
+%    %This font example is compiled on macOS
+%    \newfontfamily\chancery[Ligatures=TeX]{Apple Chancery}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      \statblockRightTitle{CR 1/2}
+%      \statblockHeaderLeftFont{\chancery\addfontfeatures{Color=FEFEFE}}
+%    \end{statblock}
+%    }
+%    \makeatother
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockHeaderRightFont}
+% Set the font for the header of the statblock. Only works if fontspec is loaded, i.e. if using xelatex or lualatex.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \makeatletter
+%    \ifdefempty{\statblock@useFontspec}{
+%    This example does not work in basic latex, please compile with lualatex or xelatex
+%    }{
+%    %This font example is compiled on macOS
+%    \newfontfamily\chancery[Ligatures=TeX]{Apple Chancery}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      \statblockRightTitle{CR 1/2}
+%      \statblockHeaderRightFont{\chancery\addfontfeatures{Color=FEFEFE}}
+%    \end{statblock}
+%    }
+%    \makeatother
+%  \end{LaTeXdemo}
+%
+% \DescribeMacro{\statblockFont}
+% Set the font for the text of the statblock. Only works if fontspec is loaded, i.e. if using xelatex or lualatex.\\
+% \textbf{Example:}
+%  \begin{LaTeXdemo}
+%    \makeatletter
+%    \ifdefempty{\statblock@useFontspec}{
+%    This example does not work in basic latex, please compile with lualatex or xelatex
+%    }{
+%    %This font example is compiled on macOS
+%    \newfontfamily\chancery[Ligatures=TeX]{Apple Chancery}
+%    \begin{statblock}
+%      \statblockTitle{Title}
+%      \statblockRightTitle{CR 1/2}
+%      \statblockFont{\chancery}
+%    \end{statblock}
+%    }
+%    \makeatother
+%  \end{LaTeXdemo}
+% \end{flushleft}
+%
+% \StopEventually{}
+%
+%
+% \section{Implementation}
+%
+%    \begin{macrocode}
+\RequirePackage{xcolor}
+\RequirePackage{xstring}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+% Identify whether we can use fontspec
+%    \begin{macrocode}
+\RequirePackage{ifluatex}
+\RequirePackage{ifxetex}
+\newcommand{\statblock@useFontspec}{}
+\ifluatex
+  \renewcommand{\statblock@useFontspec}{yes}
+  \RequirePackage{fontspec}
+\fi
+\ifxetex
+  \renewcommand{\statblock@useFontspec}{yes}
+  \RequirePackage{fontspec}
+\fi
+%    \end{macrocode}
+% Declare and process the package options
+%    \begin{macrocode}
+\DeclareOption*{\PackageWarning{statblock}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% \subsection{Internal Variables}
+% \subsubsection{Fonts}
+% If the engine is lualatex or xetex the statblock package enables usage of the fontspec
+% package and the following font related variables are defined:
+%    \begin{macrocode}
+\ifdefempty{\statblock@useFontspec}{}{
+%    \end{macrocode}
+% \begin{macro}{\statblock@HeaderFontInstance}
+% This variable holds the default font instance to use in the header
+% The default font is Arial Black with a white colour
+%    \begin{macrocode}
+\newfontfamily\statblock@HeaderFontInstance[Ligatures=TeX, Color=FEFEFE]{Arial Black}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\statblock@FontInstance}
+% This variable holds the default font instance to use in the text
+% The default font is Arial
+%    \begin{macrocode}
+\newfontfamily\statblock@FontInstance[Ligatures=TeX]{Arial}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderFont}
+% This internal variable holds the font used for the header.
+% To set this variable use the macro |\statblockHeaderFont|.
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderFont}{\statblock@HeaderFontInstance}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderRightFont}
+% This internal variable holds the font used for right-hand side of the header.
+% To set this variable use the macro |\statblockHeaderFont|.
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderRightFont}{\statblock@HeaderFontInstance}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@Font}
+% This internal variable the font used for the text of the statblock.
+% To set this variable use the macro |\statblockFont|.
+%    \begin{macrocode}
+\newcommand{\statblock@Font}{\statblock@FontInstance}
+%    \end{macrocode}
+% \end{macro}
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Display}
+% \begin{macro}{\statblock@linewidth}
+% \begin{macro}{\statblock@tempwidth}
+% Some internal lengths to control the display of the statblock
+%    \begin{macrocode}
+\newlength{\statblock@linewidth}
+\newlength{\statblock@tempwidth}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderColour}
+% This internal variable controls the colour of the bar at the top of the statblock.
+% To set this variable use the macro |\statblockHeaderColour|.
+% If fontspec is being used, this value is ignored.
+% The default colour is black
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderColour}{black}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderTextColour}
+% This internal variable controls the colour of the text in the bar at the top of the statblock.
+% To set this variable use the macro |\statblockHeaderTextColour|.
+% If fontspec is being used, this value is ignored.
+% The default colour is white
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderTextColour}{white}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderHeight}
+% This internal variable controls the height of the bar at the top of the statblock.
+% To set this variable use the macro |\statblockHeaderHeight|.
+% The default height is 0.8
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderHeight}{0.8}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@HeaderDepth}
+% This internal variable controls the depth of the bar at the top of the statblock.
+% To set this variable use the macro |\statblockHeaderDepth|.
+% The default depth is 0.4
+%    \begin{macrocode}
+\newcommand{\statblock@HeaderDepth}{0.4}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@Ident}
+% This internal variable controls the indentation of the text of the statblock.
+% To set this variable use the macro |\statblockIdent|.
+% The default depth is 0.05
+%    \begin{macrocode}
+\newcommand{\statblock@Ident}{0.05}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Information}
+% \begin{macro}{\statblock@Title}
+% This internal variable holds the title of the statblock.
+% To set this variable use the macro |\statblockTitle|.
+% There is no default value, only a warning
+%    \begin{macrocode}
+\newcommand{\statblock@Title}{\{Title is Required\}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblock@RightTitle}
+% This internal variable holds the right-hand title of the statblock.
+% To set this variable use the macro |\statblockRightTitle|.
+% There is no default value
+%    \begin{macrocode}
+\newcommand{\statblock@RightTitle}{}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Environments}
+%
+% \begin{environment}{statblock}
+% Most of the action happens at the closing of the environment where the title
+%and text variables are read and the corresponding output is created.
+%    \begin{macrocode}
+\newenvironment{statblock}%
+{%
+  \begin{flushleft}
+}%
+{%
+%    \end{macrocode}
+% Start by making there be no distance between the frame and the content
+%    \begin{macrocode}
+  \setlength{\fboxsep}{0pt}
+  \setlength{\statblock@tempwidth}{\linewidth}
+%    \end{macrocode}
+% The |\statblock@tempwidth| variable is controlling the width of the top bar.
+% When including an icon, we want to hide the end of the bar under the icon,
+% so we decrease the length a bit.
+%    \begin{macrocode}%\ifdefempty{\statblock@Icons}{}{\advance\statblock@tempwidth by -1.3\baselineskip}
+%    \end{macrocode}
+% Then create the coloured box for the header and fill the information
+%    \begin{macrocode}
+  \colorbox{\statblock@HeaderColour}{%
+    \makebox[\statblock@tempwidth][c]{%
+      \ifdefempty{\statblock@useFontspec}{}{\statblock@HeaderFont}%
+      \def\mystrut{\vrule height \statblock@HeaderHeight\baselineskip depth \statblock@HeaderDepth\baselineskip width 0pt}
+      \mystrut\par%
+    }%
+  }%
+  \hspace{-\statblock@tempwidth}%
+  \makebox[\linewidth][c]{%
+        \ifdefempty{\statblock@useFontspec}{\color{\statblock@HeaderTextColour}}{}%
+        \ifdefempty{\statblock@useFontspec}{}{\statblock@HeaderFont}
+        \MakeUppercase{~\statblock@Title }%
+        \hfill%
+        \ifdefempty{\statblock@RightTitle}{}{%
+        \ifdefempty{\statblock@useFontspec}{}{\statblock@HeaderRightFont}
+        \MakeUppercase{\statblock@RightTitle}%
+        }~
+
+        %\ifdefempty{\statblock@useFontspec}{\color{\statblock@HeaderTextColour}}{\statblock@HeaderFont}%
+        %\MakeUppercase{~\statblock@Title \hfill\ifdefempty{\statblock@RightTitle}{}%
+        %{\ifdefempty{\statblock@useFontspec}{\statblock@RightTitle}{\statblock@HeaderRightFont\statblock@RightTitle}}~%
+        %}%\ifdefempty{\statblock@Icons}{}{%\quad$\vcenter{\hbox{\includegraphics[height=2.6\baselineskip]{\statblock@TypeIcon}}}$%\enskip$\vcenter{\hbox{\includegraphics[height=2.6\baselineskip]{\statblock@TerrainIcon}}}$%\enskip$\vcenter{\hbox{\includegraphics[height=2.6\baselineskip]{\statblock@ClimateIcon}}}$%}%
+  }%
+  \setlength{\statblock@linewidth}{\linewidth}%
+  \begin{statblock@Indentation}
+    \ifdefempty{\statblock@useFontspec}{}{\statblock@Font}%
+    \vspace{0.4\baselineskip}%
+    This is a test
+  \end{statblock@Indentation}%
+  \end{flushleft}%
+}
+%    \end{macrocode}
+% \end{environment}
+%
+%
+% \subsection{Macros}
+% \subsubsection{Fonts}
+% If the engine is lualatex or xetex the statblock package enables usage of the fontspec
+% package and the following font related macros are defined:
+%    \begin{macrocode}
+\ifdefempty{\statblock@useFontspec}{}{
+%    \end{macrocode}
+% \begin{macro}{\statblockHeaderFont}
+% This macro allows to set the font being used for the bar at the top of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockHeaderFont}[1]{%
+\renewcommand{\statblock@HeaderFont}{#1} %
+\renewcommand{\statblock@HeaderRightFont}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockHeaderLeftFont}
+% This macro allows to set the font being used for the right-hand side of the bar at the top of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockHeaderLeftFont}[1]{\renewcommand{\statblock@HeaderFont}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockHeaderRightFont}
+% This macro allows to set the font being used for the right-hand side of the bar at the top of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockHeaderRightFont}[1]{\renewcommand{\statblock@HeaderRightFont}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockFont}
+% This macro allows to set the font being used for the text of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockFont}[1]{\renewcommand{\statblock@Font}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Display}
+% \begin{macro}{\statblockHeaderColour}
+% This macro allows to set the colour being used for the bar at the top of the statblock.
+% If fontspec is being used, this value is ignored.
+%    \begin{macrocode}
+\newcommand{\statblockHeaderColour}[1]{\renewcommand{\statblock@HeaderColour}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockHeaderTextColour}
+% This macro allows to set the colour of the text in the bar at the top of the statblock.
+% If fontspec is being used, this value is ignored.
+%    \begin{macrocode}
+\newcommand{\statblockHeaderTextColour}[1]{\renewcommand{\statblock@HeaderTextColour}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockHeaderHeight}
+% This macro allows to set the height of the bar at the top of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockHeaderHeight}[1]{\renewcommand{\statblock@HeaderHeight}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockHeaderDepth}
+% This macro allows to set the depth of the bar at the top of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockHeaderDepth}[1]{\renewcommand{\statblock@HeaderDepth}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockIdent}
+% This macro allows to set the indentation of successive blocks of text
+%    \begin{macrocode}
+\newcommand{\statblockIdent}[1]{\renewcommand{\statblock@Ident}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Information}
+% \begin{macro}{\statblockTitle}
+% This macro allows to set the title of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockTitle}[1]{\renewcommand{\statblock@Title}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\statblockRightTitle}
+% This macro allows to set the right-hand title of the statblock
+%    \begin{macrocode}
+\newcommand{\statblockRightTitle}[1]{\renewcommand{\statblock@RightTitle}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Internal}
+% \begin{environment}{statblock@Indentation}
+% This internal environment is used in order to create the desired indentation scheme.
+%    \begin{macrocode}
+\newenvironment{statblock@Indentation}%
+{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{\statblock@Ident\linewidth}%
+    %\advance\leftmargin by \statblock@Ident\linewidth%
+    \setlength{\listparindent}{-\statblock@Ident\linewidth}%
+    \setlength{\itemindent}{-\statblock@Ident\linewidth}%
+    \setlength\parskip{0pt}%
+    %\setlength\partopsep{0pt}%
+    \setlength{\parsep}{\parskip}%
+    %http://www.ntg.nl/maps/11/33.pdf  - page 5
+  }%
+  \item[]%
+}
+{%
+    \end{list}
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{statblock@Section}
+% This internal environment is used in order to create sections in the statblock.
+%    \begin{macrocode}
+\newcommand{\statblock@Section}[1]{{%
+    \vspace{-0.5\baselineskip}%
+    %\makebox[\linewidth][c]{% This was an attempt to make the lines and text behave as a single unit... in progress%
+        \rule{\statblock@linewidth}{0.05\baselineskip}\\%
+        \vspace{-0.4\baselineskip}%
+        \textbf{\addfontfeatures{Scale=0.8}\MakeUppercase{#1}}\\%
+        \vspace{-0.8\baselineskip}
+        \rule{\statblock@linewidth}{0.05\baselineskip}\\%
+    %}%
+}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \Finale
+\endinput
